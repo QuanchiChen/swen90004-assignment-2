@@ -5,6 +5,8 @@
  * @author team 3
  */
 public class Params {
+    // The maximum horizontal and vertical coordinate
+    public static final int MAX_COORDINATE = 32;
     // The initial number of people
     public static final int NUM_PEOPLE = 250;
     // The shortest number of clock ticks a person could live

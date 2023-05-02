@@ -8,4 +8,12 @@ public class Patch {
     private int grain;
     // The maximum amount of grain this patch can hold
     private int maxGrain;
+
+    public int getGrain() {
+        return grain;
+    }
+
+    public void setGrain(int grain) {
+        this.grain = grain;
+    }
 }
