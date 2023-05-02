@@ -4,4 +4,6 @@
  * @author team 3
  */
 public class Engine {
+    // A grid of patches
+    private Patch[][] grid;
 }
