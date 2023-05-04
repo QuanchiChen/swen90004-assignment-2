@@ -5,6 +5,7 @@ import java.util.Objects;
 
 /**
  * Allow people to interact with a grid of patches that consists of 33 x 33 patches.
+ * The coordinate of the left-bottom patch is (0, 0).
  *
  * @author team 3
  */
@@ -41,6 +42,94 @@ public class Engine {
 
         for (int i = 0; i < Params.NUM_PEOPLE; i++)
             people.add(new Person());
+    }
+
+    /**
+     * Move a person one patch in the most profitable direction.
+     *
+     * @param person a Person instance
+     */
+    private void movePerson(Person person) {
+        int vision = person.getVision();
+        int x = person.getX();
+        int y = person.getY();
+
+        int totalGrainAheadNorth = calculateTotalGrainAhead(vision, x, y, Direction.NORTH);
+        int totalGrainAheadSouth = calculateTotalGrainAhead(vision, x, y, Direction.SOUTH);
+        int totalGrainAheadWest = calculateTotalGrainAhead(vision, x, y, Direction.WEST);
+        int totalGrainAheadEast = calculateTotalGrainAhead(vision, x, y, Direction.EAST);
+
+        int maxTotalGrainAhead = totalGrainAheadNorth;
+        Direction dir = Direction.NORTH;
+
+        if (totalGrainAheadSouth > maxTotalGrainAhead) {
+            maxTotalGrainAhead = totalGrainAheadSouth;
+            dir = Direction.SOUTH;
+        }
+        if (totalGrainAheadWest > maxTotalGrainAhead) {
+            maxTotalGrainAhead = totalGrainAheadWest;
+            dir = Direction.WEST;
+        }
+        if (totalGrainAheadEast > maxTotalGrainAhead) {
+            dir = Direction.EAST;
+        }
+
+        switch (dir) {
+            case NORTH:
+                person.setY(y + 1);
+            case SOUTH:
+                person.setY(y - 1);
+            case WEST:
+                person.setX(x - 1);
+            case EAST:
+                person.setX(x + 1);
+        }
+    }
+
+    /**
+     * Calculate the total amount of grain ahead.
+     * Note that the coordinate of the left-bottom patch is (0, 0).
+     *
+     * @param vision the vision of the person
+     * @param x      the horizontal coordinate of the person
+     * @param y      the vertical coordinate of the person
+     * @param dir    the direction to check
+     * @return the total amount of grain ahead in a direction
+     */
+    private int calculateTotalGrainAhead(int vision, int x, int y, Direction dir) {
+        int totalGrain = 0;
+
+        if (dir == Direction.NORTH) {
+            for (int i = 0; i < vision; i++) {
+                if (y == Params.MAX_COORDINATE) // Check the grid border.
+                    break;
+                y++;
+                totalGrain += grid[x][y].getGrain();
+            }
+        } else if (dir == Direction.SOUTH) {
+            for (int i = 0; i < vision; i++) {
+                if (y == 0) // Check the grid border.
+                    break;
+                y--;
+                totalGrain += grid[x][y].getGrain();
+            }
+        } else if (dir == Direction.WEST) {
+            for (int i = 0; i < vision; i++) {
+                if (x == 0) // Check the grid border.
+                    break;
+                x--;
+                totalGrain += grid[x][y].getGrain();
+            }
+        } else if (dir == Direction.EAST) {
+            for (int i = 0; i < vision; i++) {
+                if (x == Params.MAX_COORDINATE) // Check the grid border.
+                    break;
+                x++;
+                totalGrain += grid[x][y].getGrain();
+            }
+        }
+
+        return totalGrain;
     }
 
     /**
@@ -91,5 +180,12 @@ public class Engine {
      */
     public void start() {
         calculateNumericalValues();
+    }
+
+    /**
+     * Directions.
+     */
+    public enum Direction {
+        NORTH, SOUTH, WEST, EAST
     }
 }
