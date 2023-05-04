@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * The engine consists of people and a grid of patches.
+ * Allow people to interact with a grid of patches that consists of 33 x 33 patches.
  *
  * @author team 3
  */
