@@ -4,8 +4,6 @@
  * @author team 3
  */
 public class Person {
-    // The class of the person
-    private Class pClass;
     // The maximum age the person can reach
     private int lifeExpectancy;
     // The age of the person
@@ -58,9 +56,5 @@ public class Person {
 
     public int getVision() {
         return vision;
-    }
-
-    public enum Class {
-        LOW, MID, UP
     }
 }
