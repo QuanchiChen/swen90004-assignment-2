@@ -18,7 +18,7 @@ public class Params {
     // The highest possible amount of grain a person could eat per clock tick
     public static final int METABOLISM_MAX = 15;
     // The initial density of patches seeded with the maximum amount of grain
-    public static final double PERCENT_BEST_LAND = 0.1;
+    public static final int PERCENT_BEST_LAND = 10;
     // The maximum amount of grain any patch can hold
     public static final int MAX_GRAIN = 50;
     // The interval in which the grain grows
