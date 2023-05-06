@@ -12,6 +12,7 @@ import java.util.Objects;
 public class Engine {
     // A grid of patches
     private final Patch[][] grid = new Patch[Params.MAX_COORDINATE + 1][Params.MAX_COORDINATE + 1];
+    // People in the grid
     private final List<Person> people = new ArrayList<>(Params.NUM_PEOPLE);
 
     public Engine() {
@@ -42,6 +43,18 @@ public class Engine {
 
         for (int i = 0; i < Params.NUM_PEOPLE; i++)
             people.add(new Person());
+    }
+
+    /**
+     * Start the engine.
+     */
+    public void start() {
+        for (int tick = 0; tick < Params.MAX_TICK; tick++) {
+            calculateNumericalValues();
+
+            if (tick % Params.GRAIN_GROWTH_INTERVAL == 0)
+                growGrain();
+        }
     }
 
     /**
@@ -133,6 +146,26 @@ public class Engine {
     }
 
     /**
+     * The grain of each patch grows.
+     */
+    private void growGrain() {
+        for (int x = 0; x <= Params.MAX_COORDINATE; x++) {
+            for (int y = 0; y <= Params.MAX_COORDINATE; y++) {
+                Patch patch = grid[x][y];
+                int grain = patch.getGrain();
+                int maxGrain = patch.getMaxGrain();
+
+                if (grain < maxGrain) {
+                    grain += Params.NUM_GRAIN_GROWN;
+                    if (grain > maxGrain) // Check if the amount of grain exceeds the patch's capacity.
+                        grain = maxGrain;
+                    patch.setGrain(grain);
+                }
+            }
+        }
+    }
+
+    /**
      * Calculate the Gini index of the population and the number of lower-class, middle-class, and upper-class people.
      */
     private void calculateNumericalValues() {
@@ -173,13 +206,6 @@ public class Engine {
                 .flatMapToDouble(v1 -> wealthList.stream().mapToDouble(v2 -> Math.abs(v1 - v2))).sum();
         double mean = wealthList.stream().mapToDouble(v -> v).average().orElse(0.0);
         return sumOfDifference / (2 * wealthList.size() * wealthList.size() * mean);
-    }
-
-    /**
-     * Start the engine.
-     */
-    public void start() {
-        calculateNumericalValues();
     }
 
     /**

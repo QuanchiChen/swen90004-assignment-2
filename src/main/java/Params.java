@@ -23,7 +23,9 @@ public class Params {
     // The maximum amount of grain any patch can hold
     public static final int MAX_GRAIN = 50;
     // The interval in which the grain grows
-    public static final int GRAIN_GROWTH_INTERVAL = 1;
+    public static final int GRAIN_GROWTH_INTERVAL = 2;
     // The amount of grown grain per GRAIN_GROWTH_INTERVAL
     public static final int NUM_GRAIN_GROWN = 4;
+    // The maximum clock tick
+    public static final int MAX_TICK = 1000;
 }
