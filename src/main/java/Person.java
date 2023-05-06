@@ -36,7 +36,8 @@ public class Person {
      * Reset the person's attributes.
      */
     public void reset() {
-        lifeExpectancy = Params.LIFE_EXPECTANCY_MIN + Util.random(Params.LIFE_EXPECTANCY_MAX - Params.LIFE_EXPECTANCY_MIN + 1);
+        lifeExpectancy = Params.LIFE_EXPECTANCY_MIN +
+                Util.random(Params.LIFE_EXPECTANCY_MAX - Params.LIFE_EXPECTANCY_MIN + 1);
         age = Util.random(lifeExpectancy);
         metabolism = 1 + Util.random(Params.METABOLISM_MAX);
         wealth = metabolism + Util.random(50);

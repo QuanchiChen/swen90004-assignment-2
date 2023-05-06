@@ -1,3 +1,6 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -14,6 +17,14 @@ public class Engine {
     private final Patch[][] grid = new Patch[Params.MAX_COORDINATE + 1][Params.MAX_COORDINATE + 1];
     // People in the grid
     private final List<Person> people = new ArrayList<>(Params.NUM_PEOPLE);
+    // A list consisting of the Gini index of the population at each clock tick
+    private final List<Double> giniIndexList = new ArrayList<>();
+    // The number of upper-class people at each tick
+    private final List<Integer> numUpList = new ArrayList<>();
+    // The number of middle-class people at each tick
+    private final List<Integer> numMidList = new ArrayList<>();
+    // The number of lower-class people at each tick
+    private final List<Integer> numLowList = new ArrayList<>();
 
     public Engine() {
         init();
@@ -49,7 +60,7 @@ public class Engine {
      * Start the engine.
      */
     public void start() {
-        for (int tick = 0; tick < Params.MAX_TICK; tick++) {
+        for (int tick = 0; tick <= Params.MAX_TICK; tick++) {
             harvest();
             moveEatAgeDie();
 
@@ -58,6 +69,8 @@ public class Engine {
 
             calculateNumericalValues();
         }
+
+        writeToFile();
     }
 
     /**
@@ -250,8 +263,10 @@ public class Engine {
             wealthList.add((double) wealth);
         }
 
-        System.out.println(numUp + " " + numMid + " " + numLow);
-        System.out.println(calculateGiniIndex(wealthList));
+        numUpList.add(numUp);
+        numMidList.add(numMid);
+        numLowList.add(numLow);
+        giniIndexList.add(calculateGiniIndex(wealthList));
     }
 
     /**
@@ -265,6 +280,57 @@ public class Engine {
                 .flatMapToDouble(v1 -> wealthList.stream().mapToDouble(v2 -> Math.abs(v1 - v2))).sum();
         double mean = wealthList.stream().mapToDouble(v -> v).average().orElse(0.0);
         return sumOfDifference / (2 * wealthList.size() * wealthList.size() * mean);
+    }
+
+    /**
+     * Write the Gini index of the population and the number of lower-class, middle-class, and upper-class people
+     * in each clock tick to a file named data.csv.
+     */
+    public void writeToFile() {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("data.csv"));
+            int maxTick = Params.MAX_TICK;
+
+            for (int tick = 0; tick <= maxTick; tick++) {
+                if (tick < maxTick)
+                    writer.write(tick + ",");
+                else
+                    writer.write(Integer.toString(tick));
+            }
+            writer.newLine();
+
+            for (int i = 0; i <= maxTick; i++) {
+                if (i < maxTick)
+                    writer.write(giniIndexList.get(i) + ",");
+                else
+                    writer.write(giniIndexList.get(i).toString());
+            }
+            writer.newLine();
+
+            writeOneLine(writer, numUpList);
+            writeOneLine(writer, numMidList);
+            writeOneLine(writer, numLowList);
+
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void writeOneLine(BufferedWriter writer, List<Integer> list) {
+        int maxTick = Params.MAX_TICK;
+        try {
+            for (int i = 0; i <= maxTick; i++) {
+                if (i < maxTick)
+                    writer.write(list.get(i) + ",");
+                else
+                    writer.write(list.get(i).toString());
+            }
+            writer.newLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**

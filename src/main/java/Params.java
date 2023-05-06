@@ -6,7 +6,7 @@
  */
 public class Params {
     // The maximum clock tick
-    public static final int MAX_TICK = 200;
+    public static final int MAX_TICK = 1000;
     // The maximum horizontal and vertical coordinate
     // Since the minimal coordinate is 0, the grid consists of 33 x 33 patches.
     public static final int MAX_COORDINATE = 32;
@@ -25,8 +25,7 @@ public class Params {
     // The maximum amount of grain any patch can hold
     public static final int MAX_GRAIN = 50;
     // The interval in which the grain grows
-    public static final int GRAIN_GROWTH_INTERVAL = 2;
+    public static final int GRAIN_GROWTH_INTERVAL = 1;
     // The amount of grown grain per GRAIN_GROWTH_INTERVAL
     public static final int NUM_GRAIN_GROWN = 4;
-    ;
 }
