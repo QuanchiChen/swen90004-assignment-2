@@ -98,8 +98,18 @@ public class Engine {
         return numPeople;
     }
 
+    /**
+     * Each person moves one patch in the most profitable direction and consumes some grain.
+     * A person dies and produces a single offspring when running out of lifespan or wealth.
+     */
     public void moveEatAgeDie() {
-
+        for (Person person : people) {
+            movePerson(person);
+            person.setWealth(person.getWealth() - person.getMetabolism());
+            person.setAge(person.getAge() + 1);
+            if (person.getWealth() < 0 || person.getAge() > person.getLifeExpectancy())
+                person.reset();
+        }
     }
 
     /**
@@ -225,8 +235,8 @@ public class Engine {
 
         // Calculate the numbers of lower-class, middle-class, and upper-class people
         // based on the recolor-turtles procedure.
-        for (Person singlePerson : people) {
-            int wealth = singlePerson.getWealth();
+        for (Person person : people) {
+            int wealth = person.getWealth();
             if (wealth <= maxWealth / 3)
                 numLow++;
             else if (wealth <= maxWealth / 3 * 2)
