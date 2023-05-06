@@ -50,11 +50,56 @@ public class Engine {
      */
     public void start() {
         for (int tick = 0; tick < Params.MAX_TICK; tick++) {
-            calculateNumericalValues();
+            harvest();
+            moveEatAgeDie();
 
             if (tick % Params.GRAIN_GROWTH_INTERVAL == 0)
                 growGrain();
+
+            calculateNumericalValues();
         }
+    }
+
+    /**
+     * Each person harvests the grain on the occupied patch.
+     */
+    private void harvest() {
+        for (Person person : people) {
+            int x = person.getX();
+            int y = person.getY();
+            person.setWealth(person.getWealth() + grid[x][y].getGrain() / getNumPeople(x, y));
+        }
+
+        for (Person person : people) {
+            int x = person.getX();
+            int y = person.getY();
+            grid[x][y].setGrain(0);
+        }
+    }
+
+    /**
+     * Find the number of people in a particular patch.
+     *
+     * @param x the horizontal coordinate of the patch
+     * @param y the vertical coordinate of the patch
+     * @return the number of people in that patch
+     */
+    private int getNumPeople(int x, int y) {
+        int numPeople = 0;
+
+        for (Person person : people) {
+            if (person.getX() == x) {
+                if (person.getY() == y) {
+                    numPeople++;
+                }
+            }
+        }
+
+        return numPeople;
+    }
+
+    public void moveEatAgeDie() {
+
     }
 
     /**
