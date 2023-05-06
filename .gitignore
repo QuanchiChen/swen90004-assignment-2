@@ -14,3 +14,7 @@ target/
 
 ### Result File ###
 *.csv
+
+### MATLAB ###
+.~lock.data.csv#
+plot_numerical_results.asv
