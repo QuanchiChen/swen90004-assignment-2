@@ -144,13 +144,17 @@ public class Engine {
 
         switch (dir) {
             case NORTH:
-                person.setY(y + 1);
+                if (y + 1 <= Params.MAX_COORDINATE)
+                    person.setY(y + 1);
             case SOUTH:
-                person.setY(y - 1);
+                if (y - 1 >= 0)
+                    person.setY(y - 1);
             case WEST:
-                person.setX(x - 1);
+                if (x - 1 >= 0)
+                    person.setX(x - 1);
             case EAST:
-                person.setX(x + 1);
+                if (x + 1 <= Params.MAX_COORDINATE)
+                    person.setX(x + 1);
         }
     }
 
