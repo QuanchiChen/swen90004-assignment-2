@@ -1,7 +1,7 @@
 /**
  * Represent a person in the wealth distribution model.
  *
- * @author team 3
+ * @author team 3: Quanchi Chen
  */
 public class Person {
     // The horizontal coordinate of the person

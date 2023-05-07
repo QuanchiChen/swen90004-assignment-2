@@ -3,7 +3,7 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * A utility class consisting of helper functions.
  *
- * @author team 3
+ * @author team 3: Quanchi Chen
  */
 public final class Util {
     /**
@@ -61,6 +61,12 @@ public final class Util {
         }
     }
 
+    /**
+     * Check if a coordinate is out of the bound.
+     *
+     * @param coordinate a horizontal or vertical coordinate
+     * @return the original coordinate if not out of the bound
+     */
     private static int wrap(int coordinate) {
         if (coordinate == -1)
             return Params.MAX_COORDINATE - 1;

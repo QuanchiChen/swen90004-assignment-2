@@ -8,11 +8,13 @@ import java.util.Objects;
 
 /**
  * Allow people to interact with a grid of patches that consists of 33 x 33 patches.
- * The coordinate of the left-bottom patch is (0, 0).
+ * The coordinate of the bottom-left patch is (0, 0).
  *
- * @author team 3
+ * @author team 3: Quanchi Chen
  */
 public class Engine {
+    // The single Engine instance within the program
+    private static final Engine engine = new Engine();
     // A grid of patches
     private final Patch[][] grid = new Patch[Params.MAX_COORDINATE + 1][Params.MAX_COORDINATE + 1];
     // People in the grid
@@ -26,8 +28,15 @@ public class Engine {
     // The number of lower-class people at each tick
     private final List<Integer> numLowList = new ArrayList<>();
 
-    public Engine() {
+    /**
+     * A private constructor to prevent explicit instantiation.
+     */
+    private Engine() {
         init();
+    }
+
+    public static Engine getEngine() {
+        return engine;
     }
 
     /**
@@ -173,7 +182,7 @@ public class Engine {
 
     /**
      * Calculate the total amount of grain ahead.
-     * Note that the coordinate of the left-bottom patch is (0, 0).
+     * Note that the coordinate of the bottom-left patch is (0, 0).
      *
      * @param vision the vision of the person
      * @param x      the horizontal coordinate of the person
@@ -317,6 +326,12 @@ public class Engine {
         }
     }
 
+    /**
+     * Write the list in one line in the results file.
+     *
+     * @param writer a BufferedWriter instance
+     * @param list   numUpList, numMidList, or numLowList
+     */
     private void writeOneLine(BufferedWriter writer, List<Integer> list) {
         int maxTick = Params.MAX_TICK;
         try {
