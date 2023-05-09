@@ -6,7 +6,7 @@
  */
 public final class Params {
     // The maximum clock tick
-    public static final int MAX_TICK = 600;
+    public static final int MAX_TICK = 800;
     // The maximum horizontal and vertical coordinate
     // Since the minimal coordinate is 0, the grid consists of 33 x 33 patches.
     public static final int MAX_COORDINATE = 32;
