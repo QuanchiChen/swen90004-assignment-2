@@ -8,16 +8,20 @@ up = data(3,:);
 mid = data(4,:);
 low = data(5,:);
 
-figure;
+figure("visible","off");
 
-subplot(2,1,1);
-plot(tick, up, tick, mid, tick, low, "--");
-xlabel("Tick");
+plot(tick,low,tick,mid,tick,up,"--");
+ax = gca;
+ax.ColorOrder = [1 0 0; 0 1 0; 0 0 1];
+title("Class Plot")
+xlabel("Time");
 ylabel("Number of People");
-legend("Up","Middle","Low");
+legend("Low","Mid","Up");
+saveas(gcf,"Class.png")
 
-subplot(2,1,2);
 plot(tick,gini)
+axis([0 800 0 1]);
+title("Gini-Index vs. Time")
 xlabel("Time");
 ylabel("Gini Index");
-axis([0 800 0 1]);
+saveas(gcf,"Gini.png")
