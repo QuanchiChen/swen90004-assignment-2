@@ -49,8 +49,17 @@ public class Engine {
             }
         }
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 5; i++) {
+            for (int x = 0; x <= Params.MAX_COORDINATE; x++) {
+                for (int y = 0; y <= Params.MAX_COORDINATE; y++) {
+                    Patch patch = grid[x][y];
+                    if (patch.getMaxGrain() > 0)
+                        patch.setGrain(patch.getMaxGrain());
+                }
+            }
+
             Util.diffuse(grid, 0.25);
+        }
 
         for (int i = 0; i < 10; i++)
             Util.diffuse(grid, 0.25);
