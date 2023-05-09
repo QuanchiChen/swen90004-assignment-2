@@ -17,7 +17,7 @@ public class Patch {
      * Initialise a patch according to the setup-patches procedure.
      */
     private void init() {
-        if (Util.random(100) < Params.PERCENT_BEST_LAND) {
+        if (Util.randomFloat(100.0f) <= (float) Params.PERCENT_BEST_LAND) {
             maxGrain = Params.MAX_GRAIN;
             grain = maxGrain;
         } else {

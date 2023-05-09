@@ -14,13 +14,26 @@ public final class Util {
 
     /**
      * Return a pseudorandom integer between zero (inclusive) and the specified bound (exclusive).
-     * This method mimics the behaviour of <a href="https://ccl.northwestern.edu/netlogo/docs/dict/random.html">random</a> in NetLogo.
+     * This method mimics the behaviour of
+     * <a href="https://ccl.northwestern.edu/netlogo/docs/dict/random.html">random</a> in NetLogo.
      *
      * @param bound the upper bound (exclusive)
      * @return a pseudorandom integer between zero (inclusive) and the bound (exclusive)
      */
     public static int random(int bound) {
         return ThreadLocalRandom.current().nextInt(bound);
+    }
+
+    /**
+     * Return a pseudorandom float between zero (inclusive) and the specified bound (exclusive).
+     * This method mimics the behaviour of
+     * <a href="https://ccl.northwestern.edu/netlogo/docs/dict/random-float.html">random-float</a> in NetLogo.
+     *
+     * @param bound the upper bound (exclusive)
+     * @return a pseudorandom float between zero (inclusive) and the bound (exclusive)
+     */
+    public static float randomFloat(float bound) {
+        return ThreadLocalRandom.current().nextFloat() * bound;
     }
 
     /**
@@ -56,7 +69,7 @@ public final class Util {
         for (int x = 0; x <= Params.MAX_COORDINATE; x++) {
             for (int y = 0; y <= Params.MAX_COORDINATE; y++) {
                 double newGrain = grid[x][y].getGrain() * (1 - diffusionRatio) + gridDelta[x][y];
-                grid[x][y].setGrain((int) Math.round(newGrain));
+                grid[x][y].setGrain((int) Math.floor(newGrain));
             }
         }
     }
