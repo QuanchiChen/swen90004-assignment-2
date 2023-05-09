@@ -27,7 +27,7 @@ public class Person {
      * Initialise the instance variables.
      */
     private void init() {
-        x = Util.random(Params.MAX_VISION + 1);
+        x = Util.random(Params.MAX_COORDINATE + 1);
         y = Util.random(Params.MAX_COORDINATE + 1);
         reset();
     }
