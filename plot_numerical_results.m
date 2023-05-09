@@ -14,6 +14,7 @@ subplot(2,1,1);
 plot(tick,gini)
 xlabel("Time");
 ylabel("Gini Index");
+axis([0 600 0 1]);
 
 subplot(2,1,2);
 plot(tick, up, tick, mid, tick, low, "--");
