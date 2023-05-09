@@ -177,15 +177,19 @@ public class Engine {
             case NORTH:
                 if (y + 1 <= Params.MAX_COORDINATE)
                     person.setY(y + 1);
+                break;
             case SOUTH:
                 if (y - 1 >= 0)
                     person.setY(y - 1);
+                break;
             case WEST:
                 if (x - 1 >= 0)
                     person.setX(x - 1);
+                break;
             case EAST:
                 if (x + 1 <= Params.MAX_COORDINATE)
                     person.setX(x + 1);
+                break;
         }
     }
 

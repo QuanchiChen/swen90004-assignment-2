@@ -10,7 +10,7 @@ low = data(5,:);
 
 figure("visible","off");
 
-plot(tick,low,tick,mid,tick,up,"--");
+plot(tick,low,tick,mid,tick,up);
 ax = gca;
 ax.ColorOrder = [1 0 0; 0 1 0; 0 0 1];
 title("Class Plot")

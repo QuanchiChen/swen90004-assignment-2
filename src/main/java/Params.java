@@ -8,8 +8,8 @@ public final class Params {
     // The maximum clock tick
     public static final int MAX_TICK = 800;
     // The maximum horizontal and vertical coordinate
-    // Since the minimal coordinate is 0, the grid consists of 33 x 33 patches.
-    public static final int MAX_COORDINATE = 32;
+    // The coordinates range from 0 to MAX_COORDINATE inclusively.
+    public static final int MAX_COORDINATE = 50;
     // The initial number of people
     public static final int NUM_PEOPLE = 250;
     // The shortest number of clock ticks a person could live
