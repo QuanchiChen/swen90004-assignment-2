@@ -355,7 +355,7 @@ public class Engine {
     /**
      * Directions.
      */
-    public enum Direction {
+    private enum Direction {
         NORTH, SOUTH, WEST, EAST
     }
 }
