@@ -313,22 +313,13 @@ public class Engine {
             BufferedWriter writer = new BufferedWriter(new FileWriter("data.csv"));
             int maxTick = Params.MAX_TICK;
 
+            List<Integer> tickList = new ArrayList<>();
             for (int tick = 0; tick <= maxTick; tick++) {
-                if (tick < maxTick)
-                    writer.write(tick + ",");
-                else
-                    writer.write(Integer.toString(tick));
+                tickList.add(tick);
             }
-            writer.newLine();
 
-            for (int i = 0; i <= maxTick; i++) {
-                if (i < maxTick)
-                    writer.write(giniIndexList.get(i) + ",");
-                else
-                    writer.write(giniIndexList.get(i).toString());
-            }
-            writer.newLine();
-
+            writeOneLine(writer, tickList);
+            writeOneLine(writer, giniIndexList);
             writeOneLine(writer, numUpList);
             writeOneLine(writer, numMidList);
             writeOneLine(writer, numLowList);
@@ -343,9 +334,9 @@ public class Engine {
      * Write the list in one line in the results file.
      *
      * @param writer a BufferedWriter instance
-     * @param list   numUpList, numMidList, or numLowList
+     * @param list   the list to write
      */
-    private void writeOneLine(BufferedWriter writer, List<Integer> list) {
+    private <T> void writeOneLine(BufferedWriter writer, List<T> list) {
         int maxTick = Params.MAX_TICK;
         try {
             for (int i = 0; i <= maxTick; i++) {
