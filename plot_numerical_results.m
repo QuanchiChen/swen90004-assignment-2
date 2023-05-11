@@ -16,7 +16,7 @@ ax.ColorOrder = [1 0 0; 0 1 0; 0 0 1];
 title("Class Plot")
 xlabel("Time");
 ylabel("Number of People");
-legend("Low","Mid","Up");
+legend("Low","Mid","Up","Location","east");
 saveas(gcf,"Class.png")
 
 plot(tick,gini)
