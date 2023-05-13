@@ -29,19 +29,26 @@ public class Person {
     private void init() {
         x = Util.random(Params.MAX_COORDINATE + 1);
         y = Util.random(Params.MAX_COORDINATE + 1);
-        reset();
+
+        reset(0);
+        wealth = metabolism + Util.random(50);
     }
 
     /**
      * Reset the person's attributes.
      */
-    public void reset() {
+    public void reset(int mode) {
         lifeExpectancy = Params.LIFE_EXPECTANCY_MIN +
                 Util.random(Params.LIFE_EXPECTANCY_MAX - Params.LIFE_EXPECTANCY_MIN + 1);
         age = Util.random(lifeExpectancy);
         metabolism = 1 + Util.random(Params.METABOLISM_MAX);
-        wealth = metabolism + Util.random(50);
         vision = 1 + Util.random(Params.MAX_VISION);
+
+        // In the original model, an offspring's wealth is unrelated to the parents'.
+        if (mode == 0)
+            wealth = metabolism + Util.random(50);
+        else
+            wealth = (int) (1.0 * wealth * Params.INHERITANCE_RATIO / 100);
     }
 
     public int getX() {

@@ -77,10 +77,10 @@ public class Engine {
     /**
      * Start the engine.
      */
-    public void start() {
+    public void start(int mode) {
         for (int tick = 0; tick <= Params.MAX_TICK; tick++) {
             harvest();
-            moveEatAgeDie();
+            moveEatAgeDie(mode);
 
             if (tick % Params.GRAIN_GROWTH_INTERVAL == 0)
                 growGrain();
@@ -133,13 +133,13 @@ public class Engine {
      * Each person moves one patch in the most profitable direction and consumes some grain.
      * A person dies and produces a single offspring when running out of lifespan or wealth.
      */
-    public void moveEatAgeDie() {
+    public void moveEatAgeDie(int mode) {
         for (Person person : people) {
             movePerson(person);
             person.setWealth(person.getWealth() - person.getMetabolism());
             person.setAge(person.getAge() + 1);
             if (person.getWealth() < 0 || person.getAge() > person.getLifeExpectancy())
-                person.reset();
+                person.reset(mode);
         }
     }
 

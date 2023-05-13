@@ -28,4 +28,6 @@ public final class Params {
     public static final int GRAIN_GROWTH_INTERVAL = 1;
     // The amount of grown grain per GRAIN_GROWTH_INTERVAL
     public static final int NUM_GRAIN_GROWN = 4;
+    // The percentage of the parent's wealth an offspring can inherit
+    public static final int INHERITANCE_RATIO = 50;
 }
