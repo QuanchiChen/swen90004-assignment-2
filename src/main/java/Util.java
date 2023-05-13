@@ -3,7 +3,7 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * A utility class consisting of helper functions.
  *
- * @author team 3: Quanchi Chen
+ * @author team 3: Quanchi Chen, Yijie Xie
  */
 public final class Util {
     /**

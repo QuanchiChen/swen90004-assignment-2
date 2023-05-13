@@ -2,7 +2,7 @@
  * Parameter class used for setting the model.
  * Adjust the values of parameters in this class to observe different model behaviours.
  *
- * @author team 3: Quanchi Chen
+ * @author team 3: Quanchi Chen, Yijie Xie
  */
 public final class Params {
     // The maximum clock tick

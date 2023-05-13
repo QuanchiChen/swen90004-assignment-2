@@ -6,6 +6,11 @@ import java.util.Objects;
  * @author team 3: Quanchi Chen
  */
 public class Main {
+    /**
+     * The entry to run the program.
+     *
+     * @param args the command line arguments
+     */
     public static void main(String[] args) {
         int mode = parseArgs(args);
         Engine engine = Engine.getEngine();
@@ -15,6 +20,12 @@ public class Main {
                 "You may use MATLAB to run plot_numerical_results.m to plot the numerical results produced.");
     }
 
+    /**
+     * Parse the command line arguments.
+     *
+     * @param args the command line arguments
+     * @return an integer indicating the mode
+     */
     private static int parseArgs(String[] args) {
         if (args.length != 2) {
             System.out.println("Please provide the -m option and specify the mode.");

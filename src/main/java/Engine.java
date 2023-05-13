@@ -10,7 +10,7 @@ import java.util.Objects;
  * Allow people to interact with a grid of patches that consists of 33 x 33 patches.
  * The coordinate of the bottom-left patch is (0, 0).
  *
- * @author team 3: Quanchi Chen
+ * @author team 3: Quanchi Chen, Yijie Xie
  */
 public class Engine {
     // The single Engine instance within the program
