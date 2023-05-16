@@ -1,3 +1,6 @@
+% The MATLAB script to plot the numerical results recorded in data.csv
+% Author: team 3
+
 close all;
 
 data = readmatrix("data.csv");
@@ -16,7 +19,7 @@ ax.ColorOrder = [1 0 0; 0 1 0; 0 0 1];
 title("Class Plot")
 xlabel("Time");
 ylabel("Number of People");
-legend("Low","Mid","Up","Location","east");
+legend("Low","Mid","Up","Location","eastoutside");
 saveas(gcf,"Class.png")
 
 plot(tick,gini)
