@@ -44,11 +44,13 @@ public class Person {
         metabolism = 1 + Util.random(Params.METABOLISM_MAX);
         vision = 1 + Util.random(Params.MAX_VISION);
 
-        // In the original model, an offspring's wealth is unrelated to the parents'.
         if (mode == 0)
+            // In the original model, an offspring's wealth is unrelated to the parents' and randomly generated.
             wealth = metabolism + Util.random(50);
         else
-            wealth = (int) (1.0 * wealth * Params.INHERITANCE_RATIO / 100);
+            // In the extended model, an offspring inherits a certain percentage of the parent's wealth.
+            // If the parent's wealth is less than zero, the wealth of the offspring is zero.
+            wealth = (wealth < 0) ? 0 : (int) (1.0 * wealth * Params.INHERITANCE_RATIO / 100);
     }
 
     public int getX() {

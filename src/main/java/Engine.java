@@ -133,7 +133,7 @@ public class Engine {
      * Each person moves one patch in the most profitable direction and consumes some grain.
      * A person dies and produces a single offspring when running out of lifespan or wealth.
      */
-    public void moveEatAgeDie(int mode) {
+    private void moveEatAgeDie(int mode) {
         for (Person person : people) {
             movePerson(person);
             person.setWealth(person.getWealth() - person.getMetabolism());

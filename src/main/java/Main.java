@@ -14,7 +14,10 @@ public class Main {
     public static void main(String[] args) {
         int mode = parseArgs(args);
         Engine engine = Engine.getEngine();
-        System.out.println("Simulation Started");
+        if (mode == 0)
+            System.out.println("Simulation Started (Replicated Model)");
+        else
+            System.out.println("Simulation Started (Extended Model)");
         engine.start(mode);
         System.out.println("Simulation Ended\n" +
                 "You may use MATLAB to run plot_numerical_results.m to plot the numerical results produced.");
