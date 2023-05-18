@@ -10,7 +10,7 @@ import java.util.Objects;
  * Allow people to interact with a grid of patches that consists of 33 x 33 patches.
  * The coordinate of the bottom-left patch is (0, 0).
  *
- * @author team 3: Quanchi Chen
+ * @author team 3: Quanchi Chen, Yijie Xie
  */
 public class Engine {
     // The single Engine instance within the program
@@ -77,10 +77,10 @@ public class Engine {
     /**
      * Start the engine.
      */
-    public void start() {
+    public void start(int mode) {
         for (int tick = 0; tick <= Params.MAX_TICK; tick++) {
             harvest();
-            moveEatAgeDie();
+            moveEatAgeDie(mode);
 
             if (tick % Params.GRAIN_GROWTH_INTERVAL == 0)
                 growGrain();
@@ -133,13 +133,13 @@ public class Engine {
      * Each person moves one patch in the most profitable direction and consumes some grain.
      * A person dies and produces a single offspring when running out of lifespan or wealth.
      */
-    public void moveEatAgeDie() {
+    private void moveEatAgeDie(int mode) {
         for (Person person : people) {
             movePerson(person);
             person.setWealth(person.getWealth() - person.getMetabolism());
             person.setAge(person.getAge() + 1);
             if (person.getWealth() < 0 || person.getAge() > person.getLifeExpectancy())
-                person.reset();
+                person.reset(mode);
         }
     }
 

@@ -1,7 +1,7 @@
 /**
  * Represent a patch in a NetLogo model.
  *
- * @author team 3: Quanchi Chen
+ * @author team 3: Quanchi Chen, Yijie Xie
  */
 public class Patch {
     // The current amount of grain on this patch
