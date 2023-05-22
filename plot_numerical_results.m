@@ -23,7 +23,7 @@ legend("Low","Mid","Up","Location","eastoutside");
 saveas(gcf,"Class.png")
 
 plot(tick,gini)
-axis([0 800 0 1]);
+ylim([0 1]);
 title("Gini-Index vs. Time")
 xlabel("Time");
 ylabel("Gini Index");

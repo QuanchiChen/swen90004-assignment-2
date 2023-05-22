@@ -6,7 +6,7 @@
  */
 public final class Params {
     // The maximum clock tick
-    public static final int MAX_TICK = 800;
+    public static final int MAX_TICK = 800; // 5000 is suggested for the extended model
     // The maximum horizontal and vertical coordinate
     // The coordinates range from 0 to MAX_COORDINATE inclusively.
     public static final int MAX_COORDINATE = 50;
@@ -28,6 +28,4 @@ public final class Params {
     public static final int GRAIN_GROWTH_INTERVAL = 1;
     // The amount of grown grain per GRAIN_GROWTH_INTERVAL
     public static final int NUM_GRAIN_GROWN = 4;
-    // The percentage of the parent's wealth an offspring can inherit
-    public static final int INHERITANCE_RATIO = 50;
 }

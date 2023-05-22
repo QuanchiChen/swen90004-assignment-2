@@ -47,10 +47,8 @@ public class Person {
         if (mode == 0)
             // In the original model, an offspring's wealth is unrelated to the parents' and randomly generated.
             wealth = metabolism + Util.random(50);
-        else
-            // In the extended model, an offspring inherits a certain percentage of the parent's wealth.
-            // If the parent's wealth is less than zero, the wealth of the offspring is zero.
-            wealth = (wealth < 0) ? 0 : (int) (1.0 * wealth * Params.INHERITANCE_RATIO / 100);
+        // In the extended model, an offspring fully inherits parent's wealth.
+        // Nothing needs to be done here
     }
 
     public int getX() {

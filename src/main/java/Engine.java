@@ -136,10 +136,21 @@ public class Engine {
     private void moveEatAgeDie(int mode) {
         for (Person person : people) {
             movePerson(person);
-            person.setWealth(person.getWealth() - person.getMetabolism());
-            person.setAge(person.getAge() + 1);
-            if (person.getWealth() < 0 || person.getAge() > person.getLifeExpectancy())
-                person.reset(mode);
+            if (mode == 0) {
+                person.setWealth(person.getWealth() - person.getMetabolism());
+                person.setAge(person.getAge() + 1);
+                if (person.getWealth() < 0 || person.getAge() > person.getLifeExpectancy())
+                    person.reset(mode);
+            } else {
+                // To make our extended model consistent, a person's wealth will never go
+                // under 0. If a person's wealth cannot support his metabolism, his wealth
+                // is set to 0, and he dies, leaving nothing to his offspring.
+                boolean starve = person.getWealth() < person.getMetabolism();
+                person.setWealth(Math.max(person.getWealth() - person.getMetabolism(), 0));
+                person.setAge(person.getAge() + 1);
+                if (starve || person.getAge() > person.getLifeExpectancy())
+                    person.reset(mode);
+            }
         }
     }
 
