@@ -318,6 +318,8 @@ public class Engine {
     /**
      * Write the Gini index of the population and the number of lower-class, middle-class, and upper-class people
      * in each clock tick to a file named data.csv.
+     *
+     * @param numTicks number of ticks for running the model
      */
     public void writeToFile(int numTicks) {
         try {
