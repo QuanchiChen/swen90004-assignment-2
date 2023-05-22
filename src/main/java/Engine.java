@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Allow people to interact with a grid of patches that consists of 33 x 33 patches.
+ * Allow people to interact with a grid of patches.
  * The coordinate of the bottom-left patch is (0, 0).
  *
  * @author team 3: Quanchi Chen, Yijie Xie
@@ -76,6 +76,9 @@ public class Engine {
 
     /**
      * Start the engine.
+     *
+     * @param mode the execution mode
+     * @param numTicks the number of ticks
      */
     public void start(int mode, int numTicks) {
         for (int tick = 0; tick <= numTicks; tick++) {
@@ -132,6 +135,8 @@ public class Engine {
     /**
      * Each person moves one patch in the most profitable direction and consumes some grain.
      * A person dies and produces a single offspring when running out of lifespan or wealth.
+     *
+     * @param mode the execution mode
      */
     private void moveEatAgeDie(int mode) {
         for (Person person : people) {

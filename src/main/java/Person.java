@@ -36,6 +36,8 @@ public class Person {
 
     /**
      * Reset the person's attributes.
+     *
+     * @param mode the execution mode
      */
     public void reset(int mode) {
         lifeExpectancy = Params.LIFE_EXPECTANCY_MIN +
