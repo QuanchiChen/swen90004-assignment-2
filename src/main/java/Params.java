@@ -6,7 +6,7 @@
  */
 public final class Params {
     // The maximum clock tick
-    public static final int MAX_TICK = 800; // 5000 is suggested for the extended model
+    public static final int NUM_TICKS = 800; // 5000 is suggested for the extended model
     // The maximum horizontal and vertical coordinate
     // The coordinates range from 0 to MAX_COORDINATE inclusively.
     public static final int MAX_COORDINATE = 50;

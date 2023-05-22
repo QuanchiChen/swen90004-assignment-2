@@ -77,8 +77,8 @@ public class Engine {
     /**
      * Start the engine.
      */
-    public void start(int mode) {
-        for (int tick = 0; tick <= Params.MAX_TICK; tick++) {
+    public void start(int mode, int numTicks) {
+        for (int tick = 0; tick <= numTicks; tick++) {
             harvest();
             moveEatAgeDie(mode);
 
@@ -88,7 +88,7 @@ public class Engine {
             calculateNumericalValues();
         }
 
-        writeToFile();
+        writeToFile(numTicks);
     }
 
     /**
@@ -319,13 +319,12 @@ public class Engine {
      * Write the Gini index of the population and the number of lower-class, middle-class, and upper-class people
      * in each clock tick to a file named data.csv.
      */
-    public void writeToFile() {
+    public void writeToFile(int numTicks) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("data.csv"));
-            int maxTick = Params.MAX_TICK;
 
             List<Integer> tickList = new ArrayList<>();
-            for (int tick = 0; tick <= maxTick; tick++) {
+            for (int tick = 0; tick <= numTicks; tick++) {
                 tickList.add(tick);
             }
 
@@ -348,10 +347,9 @@ public class Engine {
      * @param list   the list to write
      */
     private <T> void writeOneLine(BufferedWriter writer, List<T> list) {
-        int maxTick = Params.MAX_TICK;
         try {
-            for (int i = 0; i <= maxTick; i++) {
-                if (i < maxTick)
+            for (int i = 0; i < list.size(); i++) {
+                if (i < list.size() - 1)
                     writer.write(list.get(i) + ",");
                 else
                     writer.write(list.get(i).toString());
