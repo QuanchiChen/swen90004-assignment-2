@@ -37,7 +37,7 @@ public class Main {
      * Parse the command line arguments.
      *
      * @param args the command line arguments
-     * @return an integer indicating the mode
+     * @return the map storing parsed command line arguments
      */
     private static Map<String, Integer> parseArgs(String[] args) {
         Map<String, Integer> argsMap = new HashMap<>();
