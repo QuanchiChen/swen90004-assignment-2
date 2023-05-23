@@ -3,7 +3,7 @@ import java.util.*;
 /**
  * Entry to run the program.
  *
- * @author team 3: Quanchi Chen
+ * @author team 3: Quanchi Chen, Yijie Xie
  */
 public class Main {
     /**
@@ -49,8 +49,8 @@ public class Main {
                 case "-h": // help
                     System.out.println(
                             "Options:\n" +
-                                    "-m <mode>: execution mode. 0 for original model and 1 for extended model.\n" +
-                                    "-t <ticks>: number of ticks to run the model for."
+                                    "-m <mode>: execution mode. 0 for the original model and 1 for the extended model.\n" +
+                                    "-t <ticks>: number of clock ticks the model will run."
                     );
                     System.exit(0);
                 case "-m": // mode
@@ -73,7 +73,7 @@ public class Main {
                         try {
                             int ticks = Integer.parseInt(param);
                             if (ticks <= 0) {
-                                System.out.println("ticks must be positive.");
+                                System.out.println("The number of ticks must be positive.");
                                 System.exit(1);
                             }
                             argsMap.put("ticks", ticks);
@@ -82,7 +82,7 @@ public class Main {
                             System.exit(1);
                         }
                     } else {
-                        System.out.println("No number of ticks provided.");
+                        System.out.println("No number of ticks was provided.");
                         System.exit(1);
                     }
                     break;

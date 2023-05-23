@@ -1,0 +1,14 @@
+Change the directory to the one containing the Java source code.
+
+Compile the program.
+javac *.java
+
+Run the original model (default number of clock ticks = 800) using either of the two below commands.
+java Main
+java Main -m 0
+
+Run the extended model (number of clock ticks = 5000).
+java Main -m 1 -t 5000
+
+Get help.
+java Main -h

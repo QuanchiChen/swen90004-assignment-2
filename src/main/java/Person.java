@@ -1,7 +1,7 @@
 /**
  * Represent a person in the wealth distribution model.
  *
- * @author team 3: Quanchi Chen
+ * @author team 3: Quanchi Chen, Yijie Xie
  */
 public class Person {
     // The horizontal coordinate of the person
@@ -46,11 +46,11 @@ public class Person {
         metabolism = 1 + Util.random(Params.METABOLISM_MAX);
         vision = 1 + Util.random(Params.MAX_VISION);
 
+        // In the original model, an offspring's wealth is unrelated to the parents' and randomly generated.
         if (mode == 0)
-            // In the original model, an offspring's wealth is unrelated to the parents' and randomly generated.
             wealth = metabolism + Util.random(50);
-        // In the extended model, an offspring fully inherits parent's wealth.
-        // Nothing needs to be done here
+
+        // In the extended model, an offspring fully inherits the parent's wealth.
     }
 
     public int getX() {
