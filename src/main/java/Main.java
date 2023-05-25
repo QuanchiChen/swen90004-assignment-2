@@ -51,8 +51,8 @@ public class Main {
                             "Global Options:\n" +
                                     "\t-m      <mode>                    the execution mode (0: original; 1: extended)\n" +
                                     "\t-t      <ticks>                   the number of clock ticks the model will run\n" +
-                                    "\t-p      <num-people>              the initial population size\n" +
-                                    "\t-v      <max-vision>              the maximum vision\n" +
+                                    "\t-p      <num-people>              the initial population size [2, 1000]\n" +
+                                    "\t-v      <max-vision>              the maximum vision [1, 15]\n" +
                                     "\t-me     <metabolism-max>          the maximum metabolism\n" +
                                     "\t-lmin   <life_expectancy_min>     the minimum life expectancy\n" +
                                     "\t-lmax   <life_expectancy_max>     the maximum life expectancy\n" +
@@ -66,12 +66,12 @@ public class Main {
                     if (iterator.hasNext()) {
                         param = iterator.next();
                         try {
-                            int modeValue = Integer.parseInt(param);
-                            if (modeValue != 0 && modeValue != 1) {
+                            int mode = Integer.parseInt(param);
+                            if (mode != 0 && mode != 1) {
                                 System.out.println("The execution mode must be either 0 or 1.");
                                 System.exit(1);
                             }
-                            argsMap.put("mode", modeValue);
+                            argsMap.put("mode", mode);
                         } catch (NumberFormatException e) {
                             System.out.println("The execution mode must be either 0 or 1.");
                             System.exit(1);
@@ -98,6 +98,40 @@ public class Main {
                     } else {
                         System.out.println("Please specify the number of clock ticks following the -t option.");
                         System.exit(1);
+                    }
+                    break;
+                case "-p":
+                    if (iterator.hasNext()) {
+                        param = iterator.next();
+                        try {
+                            int numPeople = Integer.parseInt(param);
+                            if (numPeople < 2 || numPeople > 1000) {
+                                System.out.println("The number of people must be a positive integer ranging from 2 to 1000.");
+                                System.exit(1);
+                            }
+                            Params.NUM_PEOPLE = numPeople;
+                        } catch (NumberFormatException e) {
+                            System.out.println("The number of people must be a positive integer ranging from 2 to 1000.");
+                            System.exit(1);
+                        }
+                    } else {
+                        System.out.println("Please specify the number of people following the -p option.");
+                        System.exit(1);
+                    }
+                    break;
+                case "-v":
+                    if (iterator.hasNext()) {
+                        param = iterator.next();
+                        try {
+                            int maxVision = Integer.parseInt(param);
+                            if (maxVision < 1 || maxVision > 15) {
+                                System.out.println("The maximum vision must be a positive integer ranging from 1 to 15.");
+                                System.exit(1);
+                            }
+                        } catch (NumberFormatException e) {
+                            System.out.println("Please specify the maximum vision following the -v option.");
+                            System.exit(1);
+                        }
                     }
                     break;
                 default:
