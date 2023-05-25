@@ -1,0 +1,29 @@
+Change the directory to the one containing the Java source code.
+
+First, compile the Java program.
+	javac *.java
+
+Next, see all command-line options.
+	java Main -h
+
+Below is the program output after executing the above command.
+
+	Global Options:
+		-m      <mode>                    the execution mode (0: original; 1: extended)
+		-t      <ticks>                   the number of clock ticks the model will run
+		-p      <num-people>              the initial population size             [2,1000]
+		-v      <max-vision>              the maximum vision                      [1,15]
+		-me     <metabolism-max>          the maximum metabolism                  [1,25]
+		-lmin   <life_expectancy_min>     the minimum life expectancy             [1,100]
+		-lmax   <life_expectancy_max>     the maximum life expectancy             [1,100]
+		-pe     <percent-best-land>       the percentage of best lands            [5,25]
+		-gi     <grain-growth-interval>   the interval in which the grain grows   [1,10]
+		-ng     <num-grain-grown>         the amount of grain grown on each patch [1,10]
+
+Thus, you can pass the values for particular parameters via the command line.
+
+Run the original model using default parameter values.
+	java Main
+
+Run the extended model setting the clock ticks to 5000 (recommended) and keeping the remaining parameter values default.
+	java Main -m 1 -t 5000
