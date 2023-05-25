@@ -77,7 +77,7 @@ public class Engine {
     /**
      * Start the engine.
      *
-     * @param mode the execution mode
+     * @param mode     the execution mode
      * @param numTicks the number of ticks
      */
     public void start(int mode, int numTicks) {
@@ -308,7 +308,11 @@ public class Engine {
     }
 
     /**
-     * Calculate the Gini index of the current population.
+     * Calculate the Gini index of the current population. <br>
+     * Author: sprinter <br>
+     * Date: 5 May 2020 <br>
+     * Availability:
+     * <a href="https://stackoverflow.com/questions/60537754/is-there-a-java-function-for-computing-the-gini-coefficient/60538128#60538128">URL</a>
      *
      * @param wealthList a list consisting of the wealth of each person in the population
      * @return the Gini index of the population
