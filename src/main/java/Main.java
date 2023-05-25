@@ -60,15 +60,14 @@ public class Main {
                             "Global Options:\n" +
                                     "\t-m      <mode>                    the execution mode (0: original; 1: extended)\n" +
                                     "\t-t      <ticks>                   the number of clock ticks the model will run\n" +
-                                    "\t-p      <num-people>              the initial population size [2,1000]\n" +
-                                    "\t-v      <max-vision>              the maximum vision          [1,15]\n" +
-                                    "\t-me     <metabolism-max>          the maximum metabolism      [1,25]\n" +
-                                    "\t-lmin   <life_expectancy_min>     the minimum life expectancy [1,100]\n" +
-                                    "\t-lmax   <life_expectancy_max>     the maximum life expectancy [1,100]\n" +
-                                    "\t-pe     <percent-best-land>       the percentage of best lands\n" +
-                                    "\t-mg     <max-grain>               the maximum amount of grain each patch can grow\n" +
-                                    "\t-g      <grain-growth-interval>   the interval in which the grain grows\n" +
-                                    "\t-n      <num-grain-grown>         the amount of grain grown on each patch"
+                                    "\t-p      <num-people>              the initial population size             [2,1000]\n" +
+                                    "\t-v      <max-vision>              the maximum vision                      [1,15]\n" +
+                                    "\t-me     <metabolism-max>          the maximum metabolism                  [1,25]\n" +
+                                    "\t-lmin   <life_expectancy_min>     the minimum life expectancy             [1,100]\n" +
+                                    "\t-lmax   <life_expectancy_max>     the maximum life expectancy             [1,100]\n" +
+                                    "\t-pe     <percent-best-land>       the percentage of best lands            [5,25]\n" +
+                                    "\t-gi     <grain-growth-interval>   the interval in which the grain grows   [1,10]\n" +
+                                    "\t-ng     <num-grain-grown>         the amount of grain grown on each patch [1,10]"
                     );
                     System.exit(0);
                 case "-m": // mode
@@ -204,8 +203,65 @@ public class Main {
                         System.exit(1);
                     }
                     break;
+                case "-pe":
+                    if (iterator.hasNext()) {
+                        param = iterator.next();
+                        try {
+                            int percentBestLand = Integer.parseInt(param);
+                            if (percentBestLand < 5 || percentBestLand > 25) {
+                                System.out.println("The percentage of best lands must be a positive integer ranging from 5 to 25.");
+                                System.exit(1);
+                            }
+                            Params.PERCENT_BEST_LAND = percentBestLand;
+                        } catch (NumberFormatException e) {
+                            System.out.println("The percentage of best lands must be a positive integer ranging from 5 to 25.");
+                            System.exit(1);
+                        }
+                    } else {
+                        System.out.println("Please specify the percentage of best lands following the -pe option.");
+                        System.exit(1);
+                    }
+                    break;
+                case "-gi":
+                    if (iterator.hasNext()) {
+                        param = iterator.next();
+                        try {
+                            int grainGrowthInterval = Integer.parseInt(param);
+                            if (grainGrowthInterval < 1 || grainGrowthInterval > 10) {
+                                System.out.println("The interval in which the grain grows must be a positive integer ranging from 1 to 10.");
+                                System.exit(1);
+                            }
+                            Params.GRAIN_GROWTH_INTERVAL = grainGrowthInterval;
+                        } catch (NumberFormatException e) {
+                            System.out.println("The interval in which the grain grows must be a positive integer ranging from 1 to 10.");
+                            System.exit(1);
+                        }
+                    } else {
+                        System.out.println("Please specify the interval in which the grain grows following the -gi option.");
+                        System.exit(1);
+                    }
+                    break;
+                case "-ng":
+                    if (iterator.hasNext()) {
+                        param = iterator.next();
+                        try {
+                            int numGrainGrown = Integer.parseInt(param);
+                            if (numGrainGrown < 1 || numGrainGrown > 10) {
+                                System.out.println("The amount of grain grown on each patch must be a positive integer ranging from 1 to 10.");
+                                System.exit(1);
+                            }
+                            Params.NUM_GRAIN_GROWN = numGrainGrown;
+                        } catch (NumberFormatException e) {
+                            System.out.println("The amount of grain grown on each patch must be a positive integer ranging from 1 to 10.");
+                            System.exit(1);
+                        }
+                    } else {
+                        System.out.println("Please specify the amount of grain grown on each patch following the -ng option.");
+                        System.exit(1);
+                    }
+                    break;
                 default:
-                    System.out.println("Invalid Arguments");
+                    System.out.println("Invalid Arguments. Run java main -h for help.");
                     System.exit(1);
             }
         }
