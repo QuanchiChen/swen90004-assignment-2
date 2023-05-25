@@ -22,8 +22,15 @@ Below is the program output after executing the above command.
 
 Thus, you can pass the values for particular parameters via the command line.
 
-Run the original model using default parameter values.
+Run the first experiment scenario described in the report, i.e., run the original model with default parameter values.
 	java Main
+
+Run the second experiment scenario described in the report, i.e., set the interval where the grain grows to 10 and keep the remaining parameters as default.
+	java Main -gi 10
+
+Run the third experiment scenario described in the report, i.e., set the maximum life expectancy to 30 and keep the remaining parameters as default.
+	java Main -lmax 30
 
 Run the extended model setting the clock ticks to 5000 (recommended) and keeping the remaining parameter values default.
 	java Main -m 1 -t 5000
+
