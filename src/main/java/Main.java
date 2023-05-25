@@ -48,22 +48,36 @@ public class Main {
             switch (option) {
                 case "-h": // help
                     System.out.println(
-                            "Options:\n" +
-                                    "-m <mode>: execution mode. 0 for the original model and 1 for the extended model.\n" +
-                                    "-t <ticks>: number of clock ticks the model will run."
+                            "Global Options:\n" +
+                                    "\t-m      <mode>                    the execution mode (0: original; 1: extended)\n" +
+                                    "\t-t      <ticks>                   the number of clock ticks the model will run\n" +
+                                    "\t-p      <num-people>              the initial population size\n" +
+                                    "\t-v      <max-vision>              the maximum vision\n" +
+                                    "\t-me     <metabolism-max>          the maximum metabolism\n" +
+                                    "\t-lmin   <life_expectancy_min>     the minimum life expectancy\n" +
+                                    "\t-lmax   <life_expectancy_max>     the maximum life expectancy\n" +
+                                    "\t-pe     <percent-best-land>       the percentage of best lands\n" +
+                                    "\t-mg     <max-grain>               the maximum amount of grain each patch can grow\n" +
+                                    "\t-g      <grain-growth-interval>   the interval in which the grain grows\n" +
+                                    "\t-n      <num-grain-grown>         the amount of grain grown on each patch"
                     );
                     System.exit(0);
                 case "-m": // mode
                     if (iterator.hasNext()) {
                         param = iterator.next();
                         try {
-                            argsMap.put("mode", Integer.parseInt(param));
+                            int modeValue = Integer.parseInt(param);
+                            if (modeValue != 0 && modeValue != 1) {
+                                System.out.println("The execution mode must be either 0 or 1.");
+                                System.exit(1);
+                            }
+                            argsMap.put("mode", modeValue);
                         } catch (NumberFormatException e) {
-                            System.out.println("Expect an integer. Get: " + param);
+                            System.out.println("The execution mode must be either 0 or 1.");
                             System.exit(1);
                         }
                     } else {
-                        System.out.println("No mode provided.");
+                        System.out.println("Please specify the execution mode (0 or 1) following the -m option.");
                         System.exit(1);
                     }
                     break;
@@ -73,21 +87,21 @@ public class Main {
                         try {
                             int ticks = Integer.parseInt(param);
                             if (ticks <= 0) {
-                                System.out.println("The number of ticks must be positive.");
+                                System.out.println("The number of clock ticks must be a positive integer.");
                                 System.exit(1);
                             }
                             argsMap.put("ticks", ticks);
                         } catch (NumberFormatException e) {
-                            System.out.println("Expect an integer. Get: " + param);
+                            System.out.println("The number of clock ticks must be a positive integer.");
                             System.exit(1);
                         }
                     } else {
-                        System.out.println("No number of ticks was provided.");
+                        System.out.println("Please specify the number of clock ticks following the -t option.");
                         System.exit(1);
                     }
                     break;
                 default:
-                    System.out.println("Invalid arguments.");
+                    System.out.println("Invalid Arguments");
                     System.exit(1);
             }
         }
